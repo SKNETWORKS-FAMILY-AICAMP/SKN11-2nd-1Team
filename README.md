@@ -4,30 +4,36 @@
 # INTRODUCTION TEAM
 ## 팀 이름
 
-|김형주|신진슬|오정현|황준호|
-|:---:|:---:|:---:|:---:|
-|이미지1|이미지2|이미지3|이미지4|
-|[@김형주](https://github.com/Kim-Hyeong-Ju)|깃|깃|깃|
+| 김형주 | 신진슬 | 오정현 | 황준호 |
+|--------|--------|--------|-------|
+| <img src="./img/01.jpg" width="180" height="180"> | <img src="./img/02.jpg" width="180" height="180"> | <img src="./img/03.jpeg" width="180" height="180"> | <img src="./img/04.jpg" width="180" height="180"> |
+
+</div>
+
 
 <br/>
 
 # INTRODUCTION PROJECT
 
-### 🚗프로젝트 명
-#### 신문 구독 서비스 
+## 🚗프로젝트 명: 신문 구독 서비스  
 
 #### 🗓️ 개발 기간
 2025.03.31 ~ 2025.04.01 (총 2일)
 
 
-### 🐉 프로젝트 내용
+### 🐉 프로젝트 설명
 
+![이미지](./img/NEWS.png)
 
 
 ### 🚗 프로젝트 필요성
-
+디지털 전환과 미디어 경쟁 심화로 신문사 구독자 유지가 어려워지고 있습니다. 특히, 온라인·오프라인 고객의 이탈 원인이 복합적이어서 간단한 통계 분석만으로는 정확한 예측이 어렵습니다.</br></br>
+머신러닝 기반 이탈 예측 모델을 구축하면, 고객의 다양한 행동 패턴과 복합적인 이탈 원인을 반영해 고객별 이탈 가능성을 조기에 식별하고, 구독 연장 혜택 등의 사전 대응 전략을 마련할 수 있습니다. 
 
 ### ✅ 프로젝트 목표
+머신러닝을 활용하여 신문사 고객의 이탈 가능성을 식별하고, 이를 바탕으로 이탈률을 낮춰 수익을 최대화하는 것이 목표입니다.
+<br/>
+
 
 <br/>
 
@@ -35,43 +41,90 @@
 ## 주요 기술
 > 개발 환경 및 도구
 
-|<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">|<img src="https://img.shields.io/badge/vscode-1A9FFF">|<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">|<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">|<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">|
-|:---:|:---:|:---:|:---:|:---:|
-
-> UI
-
-|<img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">|
-|:---:|
-
-> 데이터 수집 및 처리
-
-|<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">|<img src="https://img.shields.io/badge/selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white">|<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">|<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">|
+|<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">|<img src="https://img.shields.io/badge/vscode-1A9FFF">|<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">|<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">|
 |:---:|:---:|:---:|:---:|
+
+> 모델 구현
+
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
 <br/>
 
 # WBS
+| 작업명              | 시작일  | 종료일  | 담당자 | 산출물              |
+|---------------------|---------|---------|--------|---------------------|
+| 프로젝트 주제선정   | 03-31   | 03-31   |  ALL   |                     |
+| EDA작성            | 03-31  | 03-31  |   ALL     | 없음               |
+| 모델 선정  | 03-31  | 03-31  |   ALL   |  |
+| 모델 성능평가      | 03-31  | 03-31  |   ALL     |          |
+| README 작성  | 03-31  | 03-31  |   ALL     |           |
+| 발표         | 03-31  | 03-31  |    황준호    | 결과               |
+
+| **번호** | **모델명**                      | **담당자** |
+|----------|---------------------------------|------------|
+| 1        | **로지스틱 회귀** (Logistic Regression) | 형주       |
+| 2        | **K-최근접 이웃** (KNN)         | 형주       |
+| 3        | **의사결정나무** (Decision Tree) | 진슬       |
+| 4        | **랜덤 포레스트** (Random Forest) | 진슬       |
+| 5        | XGBoost                         | 준호       |
+| 6        | **서포트 벡터 머신** (SVM)      | 준호       |
+| 7        | **다층 퍼셉트론** (MLPClassifier) | 정현       |
+| 8        | **보팅 분류기** (Voting Classifier) | 정현       |
 
 
 <br/>
 
-# 요구사항 명세서
+# EDA
+
+## 히트맵
+![이미지](./img/heatmap.png)
+
+### 이탈 여부 분포
+![이미지](./img/EDA1.png)
+- No(이탈자)가 Yes(구독자)보다 약 4배 많으며, 클래스 불균형이 확인됨. </br></br>
+
+
+### 카테고리별 이탈 비율
+![이미지](./img/EDA2.png)
+ </br></br>
+
+### 연속형 변수 시각화
+![이미지](./img/EDA3.png)
+- 주간 요금이 낮을수록 고객이 이탈할 가능성이 높아 보임
+- 가구 소득은 이탈 여부와 큰 차이를 보이지 않음.
+- 나이가 많은 고객들은 구독을 유지하는 경향이 강하며, 젊은 층에서 이탈 가능성이 높음.
+
+### 고객 유형 분포
+![이미지](./img/EDA.png)
+- 남성과 여성 간의 이탈률 차이가 거의 없음
+- 비근로자 그룹은 근로자 그룹보다 약간 더 높은 이탈 가능성을 보임
 
 <br/>
 
-# ERD
-
+# 전처리 후 컬럼
+| **Number** | **Column**            | **Meaning**                                     | **Preprocessing**                                                                 |
+|------------|-----------------------|-------------------------------------------------|----------------------------------------------------------------------------------|
+| 1          | HH Income             | 가구 소득                                       | 소득 범위 데이터(`$30,000 - $39,999`)를 평균값으로 변환 |
+| 2          | Home Ownership        | 주택 소유 여부                                  | 'OWNER'는 1, 'RENTER'는 0                                               |
+| 3          | dummy for Children    | 자녀 유무                                       | 자녀가 있으면 1, 없으면 0                                                |
+| 4          | Age range             | 연령대 범위                                     | 범위 데이터를 평균값으로 (예: "30-40" -> 35)                                |
+| 5          | weekly fee            | 주간 요금                                       | 범위 데이터를 평균값으로 (예: "$10-$15" -> 12.5)                           |
+| 6          | Deliveryperiod        | 배송 주기                                       | 온라인 배송 여부와 배송 주기를 매핑 (예: '7Day' -> 7일)               |
+| 7          | Nielsen Prizm         | Nielsen 프리즘 그룹                            | 남(0),여(1) & 비근로자(0),근로자(1)                                |
+| 8          | reward program        | 리워드 프로그램 참여 횟수                     | 1 이상은 1, 그 외에는 0으로 변환                                               |
+| 9          | Subscriber            | 구독 여부                                       | 'YES'는 0, 'NO'는 1 변환                                                     |
 
 
 <br/>
 
-# 웹 크롤러 코드
+# 인공지능 학습 결과서
 
 
 
 <br/>
 
 # 수행 결과
+
 
 
 <br/>
