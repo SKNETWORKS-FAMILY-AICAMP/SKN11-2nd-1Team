@@ -26,7 +26,7 @@
 ### 🐉 프로젝트 설명
 
 <figure  style="text-align: center; height:250px; width:400px;">
-<img src="./img/News.png">
+<img src="./img/NEWS.png">
 </figure>
 
 
