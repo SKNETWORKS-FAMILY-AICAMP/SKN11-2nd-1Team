@@ -54,8 +54,7 @@
 
 > 모델 구현
 
-|<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">|<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">|
-|:---:|:---:|
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
 <br/>
 
@@ -86,9 +85,9 @@
 | 8        | **보팅 분류기** (Voting Classifier) | 정현       |
 
 
-<br/>
+<br/><br/>
 
-# EDA
+# EDA - 전치리 후 결과
 
 ## 히트맵 
 ![이미지](./img/heatmap.png) </br>
@@ -103,10 +102,6 @@
 - **Year Of Residence ↔ Age** (상관계수: 0.35)  
   - 거주 기간과 나이 사이에 양의 상관관계가 존재.  
   - 👉 연령이 높을수록 거주 기간이 길어지는 경향.
-
-- **Working ↔ Nielsen Prizm** (상관계수: -0.41)  
-  - 특정 Nielsen Prizm 코드일 때 비근로자일 확률이 높음.  
-  - 👉 Working(1)과 특정 고객 유형 간 반비례 관계.
 
 ---
 
@@ -144,7 +139,7 @@
 
 <br/><br/>
 
-# 전처리 후 컬럼
+# 컬럼 전처리 
 | **Number** | **Column**            | **Meaning**                                     | **Preprocessing**                                                                 |
 |------------|-----------------------|-------------------------------------------------|----------------------------------------------------------------------------------|
 | 1          | HH Income             | 가구 소득                                       | 소득 범위 데이터(`$30,000 - $39,999`)를 평균값으로 변환 |
@@ -217,16 +212,16 @@
 ## 변수 중요도 분석 결과
 
 ### 주요 변수
-- **Weekly Fee**: `중요도 20%`  
+- **Weekly Fee**: 중요도 20%  
   - 구독 여부 예측에서 가장 큰 영향력을 가지는 변수.
 
-- **HH Income**: `중요도 18%`  
+- **HH Income**: 중요도 18%  
   - 가구 소득이 구독 여부에 큰 영향을 미침.
 
-- **Reward Program**: `중요도 16%`  
+- **Reward Program**: 중요도 16%  
   - 리워드 프로그램 참여가 구독 유지의 핵심 요인.
 
-- **Age, Year Of Residence**: `중요도 약 10%`  
+- **Age, Year Of Residence**: 중요도 약 10%  
   - 나이와 거주 연수가 구독 여부와 일정 부분 연관됨.
 
 ---
@@ -291,3 +286,5 @@
 - **오정현**:클래스 불균형이 모델 성능에 미치는 영향을 확인할 수 있었고, SMOTE와 Faker를 활용하여 여러 해결 방법을 탐색할 수 있는 유익한 시간이었습니다.
 
 - **황준호**: 아무리 열심히 튜닝을해도 데이터가 따라 주지 않으면 소용 없는다는 것을 다시 한번 뼈저리게 느꼈다. 머신러닝, 딥러닝에서 모델도 중요하지만 모델 보다 중요한게 데이터라고 생각합니다
+
+
