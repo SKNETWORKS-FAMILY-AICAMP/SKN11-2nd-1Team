@@ -90,7 +90,7 @@
 # EDA - 전치리 후 결과
 
 ## 히트맵 
-![이미지](./img/Heatmap.png) </br>
+![이미지](./img/heatmap.png) </br>
 
 ## 변수 간 상관관계 분석
 
