@@ -16,6 +16,7 @@
 # INTRODUCTION PROJECT
 
 ## 🚗프로젝트 명: 신문 구독 서비스  
+![이미지](./img/NEWSpaper.png)
 
 #### 🗓️ 개발 기간
 2025.03.31 ~ 2025.04.01 (총 2일)
@@ -23,7 +24,9 @@
 
 ### 🐉 프로젝트 설명
 
-![이미지](./img/NEWS.png)
+<figure  style="text-align: center; height:250px; width:400px;">
+<img src="./img/News.png">
+</figure>
 
 
 ### 🚗 프로젝트 필요성
