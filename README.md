@@ -26,6 +26,7 @@
 https://www.kaggle.com/datasets/andieminogue/newspaper-churn
 - 신문 구독자 이탈 데이터
 <br/>
+
 ### 🐉 프로젝트 설명
 
 <figure  style="text-align: center; height:250px; width:400px;">
