@@ -4,7 +4,7 @@
 # INTRODUCTION TEAM
 ## 팀 이름: Team Rabbit
 
-<figure  style="text-align: center; height:200px; width:400px;">
+<figure  style="text-align:center; height:200px; width:200Spx;">
 <img src="./img/rabbit.png">
 </figure>
 
