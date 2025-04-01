@@ -2,11 +2,15 @@
 <br/>
 
 # INTRODUCTION TEAM
-## 팀 이름
+## 팀 이름: Team Rabbit
+
+<figure  style="text-align: center; height:200px; width:400px;">
+<img src="./img/rabbit.png">
+</figure>
 
 | 김형주 | 신진슬 | 오정현 | 황준호 |
 |--------|--------|--------|-------|
-| <img src="./img/01.jpg" width="180" height="180"> | <img src="./img/02.jpg" width="180" height="180"> | <img src="./img/03.jpeg" width="180" height="180"> | <img src="./img/04.jpg" width="180" height="180"> |
+| <img src="./img/rabbit1.png" width="180" height="180"> | <img src="./img/rabbit2.jpg" width="180" height="180"> | <img src="./img/rabbit3.png" width="180" height="180"> | <img src="./img/rabbit4.png" width="180" height="180"> |
 
 </div>
 
@@ -157,6 +161,11 @@
 | XGBoost (Cost-Sensitive)     | 0.98                  | 0.79               | 0.87                 | 0.82                  | 0.98               | 0.89                 |
 | MLP (Cost-Sensitive)         | 0.83                  | 0.79               | 0.81                 | 0.79                  | 0.84               | 0.82                 |
 | SVM (Cost-Sensitive)         | 0.76                  | 0.71               | 0.74                 | 0.73                  | 0.77               | 0.75                 |
+
+</br>![이미지](./img/MLP.png)
+![이미지](./img/MLP2.png)</br></br>
+![이미지](./img/SVM.png)</br></br>
+![이미지](./img/SVM2.png)</br></br>
 
 
 ## 모델 성능 비교표 - Faker 데이터 증강 후
