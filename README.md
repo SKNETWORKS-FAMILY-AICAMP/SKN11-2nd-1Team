@@ -184,6 +184,8 @@
 ![이미지](./img/LightGBM.png)</br></br>
 ![이미지](./img/LightGBM2.png)</br></br>
 
+## Faker 증강
+![이미지](./img/faker.png)
 
 ## 모델 성능 비교표 - Faker 데이터 증강 후
 
