@@ -16,6 +16,7 @@
 # INTRODUCTION PROJECT
 
 ## 🚗프로젝트 명: 신문 구독 서비스  
+
 ![이미지](./img/NEWSpaper.png)
 
 #### 🗓️ 개발 기간
