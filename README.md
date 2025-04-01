@@ -20,10 +20,10 @@
 ![이미지](./img/Newspaper.png)
 
 #### 🗓️ 개발 기간
-2025.03.31 ~ 2025.04.01 (총 2일)
+> 2025.03.31 ~ 2025.04.01 (총 2일)
 
 #### 🗂️ 데이터 셋
-https://www.kaggle.com/datasets/andieminogue/newspaper-churn
+> https://www.kaggle.com/datasets/andieminogue/newspaper-churn
 - 신문 구독자 이탈 데이터
 <br/>
 
