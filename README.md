@@ -22,6 +22,33 @@
 #### 🗓️ 개발 기간
 2025.03.31 ~ 2025.04.01 (총 2일)
 
+#### 🗂️ 데이터 셋
+https://www.kaggle.com/datasets/andieminogue/newspaper-churn
+- 신문 구독자 이탈 데이터
+<br/>
+
+# INTRODUCTION TEAM
+## 팀 이름: Team Rabbit
+
+| 김형주 | 신진슬 | 오정현 | 황준호 |
+|--------|--------|--------|-------|
+| <img src="./img/rabbit1.png" width="180" height="180"> | <img src="./img/rabbit2.jpg" width="180" height="180"> | <img src="./img/rabbit3.png" width="180" height="180"> | <img src="./img/rabbit4.png" width="180" height="180"> |
+
+</div>
+
+
+<br/>
+
+# INTRODUCTION PROJECT
+
+## 🚗프로젝트 명: 신문 구독 서비스  
+
+![이미지](./img/Newspaper.png)
+
+#### 🗓️ 개발 기간
+2025.03.31 ~ 2025.04.01 (총 2일)
+
+#### 🗓️ 데이터 셋
 
 ### 🐉 프로젝트 설명
 
