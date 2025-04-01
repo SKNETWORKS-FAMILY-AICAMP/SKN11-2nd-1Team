@@ -167,8 +167,9 @@ https://www.kaggle.com/datasets/andieminogue/newspaper-churn
 | MLP (Cost-Sensitive)         | 0.83                  | 0.79               | 0.81                 | 0.79                  | 0.84               | 0.82                 |
 | SVM (Cost-Sensitive)         | 0.76                  | 0.71               | 0.74                 | 0.73                  | 0.77               | 0.75                 |
 
+
 #### MLP 코드
-</br>![이미지](./img/MLP.png)
+![이미지](./img/MLP.png)
 ![이미지](./img/MLP2.png)</br></br>
 
 #### SVM 코드
