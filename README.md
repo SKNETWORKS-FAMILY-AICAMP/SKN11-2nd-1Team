@@ -57,8 +57,11 @@
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
 <br/>
-# WBS
-## 📅 프로젝트 일정
+
+# WBS  
+
+## 📅 프로젝트 일정 
+
 | 작업명              | 시작일  | 종료일  | 담당자 | 산출물              |
 |---------------------|---------|---------|--------|---------------------|
 | 프로젝트 주제선정   | 03-31   | 03-31   |  ALL   |    데이터셋     |
