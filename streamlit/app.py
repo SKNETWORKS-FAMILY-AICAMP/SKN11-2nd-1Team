@@ -3,136 +3,156 @@ import pandas as pd
 import numpy as np
 import pickle
 
+# 페이지 설정
+st.set_page_config(
+    page_title="구독 취소 예측 시스템",
+    page_icon="📉",
+    layout="wide"
+)
+
 # 모델 로드
 with open("rf_model.pkl", "rb") as file:
     rf_model, scaler = pickle.load(file)
 
-# 올바른 컬럼 순서
+# 컬럼 순서
 correct_order = [
     "HH Income", "Home Ownership", "dummy for Children", "Year Of Residence",
     "Age", "weekly fee", "Deliveryperiod", "Nielsen Prizm", "reward program",
     "Working", "Gender", "Is_Online"
 ]
 
-# 🌟 페이지 상태를 관리하는 함수
-def set_page(page_name):
-    st.session_state["page"] = page_name
+# 탭 UI
+tab1, tab2 = st.tabs(["🏠 개별 예측", "📈 데이터 분석"])
 
-# 🌟 Streamlit Session State 초기화
-if "page" not in st.session_state:
-    st.session_state["page"] = "개별 예측"
-
-# 네비게이션바 개선: 두 개의 버튼으로 간단히 구성
-st.sidebar.title("구독 취소 위험 예측")
-if st.sidebar.button("개별 예측"):
-    set_page("개별 예측")
-if st.sidebar.button("데이터 분석"):
-    set_page("데이터 분석")
-
-# 📝 개별 예측 페이지
-if st.session_state["page"] == "개별 예측":
-    st.title("개별 사용자 구독 취소 위험 예측")
-
-    # 사용자 데이터 입력 폼
-    def user_input_features():
-        income = st.number_input("HH Income", min_value=10000, max_value=100000, step=1000)
-        age = st.slider("Age", 18, 90, 30)
-        weekly_fee = st.number_input("Weekly Fee", min_value=0.0, max_value=10.0, step=0.1)
-        reward_program = st.selectbox("Reward Program", [0, 1])
-        delivery_period = st.slider("Delivery Period", 1, 7, 3)
-        home_ownership = st.selectbox("Home Ownership", [0, 1])
-        children = st.selectbox("Has Children", [0, 1])
-        gender = st.selectbox("Gender (Male: 0, Female: 1)", [0, 1])
-        is_online = st.selectbox("Is Online", [0, 1])
-        nielsen_prizm = st.selectbox("Nielsen Prizm (0-8)", list(range(9)))
-        working = st.selectbox("Working (0: No, 1: Yes)", [0, 1])
-        year_of_residence = st.slider("Year Of Residence", 1, 30, 10)
-
-        data = {
-            "HH Income": income,
-            "Home Ownership": home_ownership,
-            "dummy for Children": children,
-            "Year Of Residence": year_of_residence,
-            "Age": age,
-            "weekly fee": weekly_fee,
-            "Deliveryperiod": delivery_period,
-            "Nielsen Prizm": nielsen_prizm,
-            "reward program": reward_program,
-            "Working": working,
-            "Gender": gender,
-            "Is_Online": is_online
+# ========================
+# 탭1: 개별 예측
+# ========================
+with tab1:
+    st.markdown("""
+        <style>
+        section.main > div:not(:has([data-testid=\"stTabs\"])) {
+            background-color: #fefefe;
+            padding: 2rem;
+            border-radius: 10px;
         }
-        return pd.DataFrame(data, index=[0])
+        </style>
+    """, unsafe_allow_html=True)
 
-    # 사용자 입력 받기
-    input_df = user_input_features()
+    st.markdown("## 🔍 개별 사용자 이탈 예측")
+    st.markdown("개별 사용자 데이터를 입력하고 버튼을 눌러 예측 결과를 확인하세요.")
 
-    # 컬럼 순서 정렬
-    input_df = input_df[correct_order]
+    with st.form(key="prediction_form"):
+        col1, col2 = st.columns(2)
 
-    # 예측 수행
-    scaled_input = scaler.transform(input_df)
-    prediction = rf_model.predict(scaled_input)
-    prediction_proba = rf_model.predict_proba(scaled_input)
+        with col1:
+            income = st.number_input("💰 HH Income", 10000, 100000, step=1000)
+            age = st.slider("🎂 Age", 18, 90, 30)
+            weekly_fee = st.number_input("💸 Weekly Fee", 0.0, 10.0, step=0.1)
+            reward_program_display = st.selectbox("🎁 Reward Program", ["미참여", "참여"])
+            reward_program = 0 if reward_program_display == "미참여" else 1
+            delivery_period = st.slider("🚚 Delivery Period", 1, 7, 3)
+            year_of_residence = st.slider("📅 Year Of Residence", 1, 30, 10)
 
-    st.subheader("예측 결과")
-    if prediction[0] == 1:
-        st.write("🚨 구독 취소 위험이 높습니다.")
-    else:
-        st.write("✅ 구독 유지 가능성이 높습니다.")
+        with col2:
+            home_ownership_display = st.selectbox("🏠 Home Ownership", ["RENT", "Own"])
+            home_ownership = 0 if home_ownership_display == "RENT" else 1
 
-    st.write(f"**취소 위험 확률:** {prediction_proba[0][1]:.2%}")
+            children_display = st.selectbox("👶 Has Children", ["자녀 없음", "자녀 있음"])
+            children = 0 if children_display == "자녀 없음" else 1
 
-    # 기여도 계산 (절대값 사용하여 기여도 명확히 표현)
-    feature_contributions = np.abs(rf_model.feature_importances_ * scaled_input[0])
-    contribution_df = pd.DataFrame({"Feature": correct_order, "Contribution": feature_contributions})
-    contribution_df = contribution_df.sort_values(by="Contribution", ascending=False)
+            gender_display = st.selectbox("🧑 Gender", ["남자", "여자"])
+            gender = 0 if gender_display == "남자" else 1
 
-    # 영향력이 큰 변수 상위 4개 표시 (값 없이 이름만)
-    top_contributions = contribution_df.head(4)
-    st.write("**이탈 가능성에 크게 기여하는 요소:**")
-    for idx, row in top_contributions.iterrows():
-        st.write(f"- {row['Feature']}")
+            is_online_display = st.selectbox("🌐 Is Online", ["오프라인", "온라인"])
+            is_online = 0 if is_online_display == "오프라인" else 1
 
-# 📊 데이터 분석 페이지
-elif st.session_state["page"] == "데이터 분석":
-    st.title("구독 중 고객 중 이탈 위험 분석")
+            nielsen_options = [
+    "MW: Male Working-age (근로 연령대 남성)",
+    "MM: Male Middle-aged (중년 남성)",
+    "YM: Young Man (젊은 남성)",
+    "ME: Male Elderly (노년 남성)",
+    "YE: Young Elderly (젊은 노년층)"
+] if gender == 0 else [
+    "FM: Female Middle-aged (중년 여성)",
+    "FW: Female Working-age (근로 연령대 여성)",
+    "YW: Young Woman (젊은 여성)",
+    "FE: Female Elderly (노년 여성)",
+    "YE: Young Elderly (젊은 노년층)"
+]
+            nielsen_prizm_display = st.selectbox("🧭 Nielsen Prizm", nielsen_options)
+            nielsen_prizm = nielsen_options.index(nielsen_prizm_display)
 
-    # 데이터 불러오기
-    file_path = "processed_data.xlsx"
-    df = pd.read_excel(file_path)
+            working_display = st.selectbox("💼 Working", ["0 : 근로 중 아님", "1 : 근로 중"])
+            working = 0 if "0" in working_display else 1
 
-    # Subscriber가 0인 데이터만 필터링
+        submitted = st.form_submit_button("예측 실행")
+
+    if submitted:
+        input_df = pd.DataFrame([{ 
+            "HH Income": income, "Home Ownership": home_ownership,
+            "dummy for Children": children, "Year Of Residence": year_of_residence,
+            "Age": age, "weekly fee": weekly_fee, "Deliveryperiod": delivery_period,
+            "Nielsen Prizm": nielsen_prizm, "reward program": reward_program,
+            "Working": working, "Gender": gender, "Is_Online": is_online
+        }])
+
+        input_df = input_df[correct_order]
+        scaled_input = scaler.transform(input_df)
+        prediction = rf_model.predict(scaled_input)
+        prediction_proba = rf_model.predict_proba(scaled_input)
+
+        st.markdown("### 📢 예측 결과")
+        if prediction[0] == 1:
+            st.error("🚨 구독 취소 위험이 **높습니다**.")
+        else:
+            st.success("✅ 구독 유지 가능성이 **높습니다**.")
+
+        st.markdown(f"**취소 위험 확률:** `{prediction_proba[0][1]:.2%}`")
+
+        contributions = np.abs(rf_model.feature_importances_ * scaled_input[0])
+        contrib_df = pd.DataFrame({"Feature": correct_order, "Contribution": contributions})
+        contrib_df = contrib_df.sort_values(by="Contribution", ascending=False)
+
+        st.markdown("**이탈에 큰 영향을 준 상위 요인:**")
+        for i, row in contrib_df.head(4).iterrows():
+            st.write(f"• {row['Feature']}")
+
+# ========================
+# 탭2: 데이터 분석
+# ========================
+with tab2:
+    st.markdown("""
+        <style>
+        section.main > div:not(:has([data-testid=\"stTabs\"])) {
+            background-color: #e8f0ff;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("## 📊 고객군 이탈 위험 분석")
+
+    df = pd.read_excel("processed_data.xlsx")
     df_active = df[df['Subscriber'] == 0]
-
-    # 데이터 전처리 (스케일링)
+        
     X_active = df_active[correct_order]
     scaled_active = scaler.transform(X_active)
-
-    # 구독 위험 예측
     df_active['Risk'] = rf_model.predict_proba(scaled_active)[:, 1]
-
-    # 취소 위험이 높은 순으로 정렬
     high_risk = df_active.sort_values(by='Risk', ascending=False).head(50)
-
-    # 시각화용 데이터 준비
     high_risk['Rank'] = range(1, len(high_risk) + 1)
 
-    # 상위 50명 표시 (모든 사용한 컬럼 포함)
-    st.subheader("구독 취소 위험이 높은 고객 Top 50")
+    st.markdown("### 🔝 이탈 위험 고객 Top 50")
     st.dataframe(high_risk[['Rank'] + correct_order + ['Risk']])
 
-    # 상세 분석 버튼
-    st.subheader("개별 구독자 위험 요인 분석")
-    selected_index = st.selectbox("분석할 고객 순위 선택", high_risk['Rank'])
-    selected_customer = high_risk[high_risk['Rank'] == selected_index].iloc[0]
+    st.markdown("### 🔍 개별 분석")
+    selected_index = st.selectbox("분석할 고객 순위", high_risk['Rank'])
+    customer = high_risk[high_risk['Rank'] == selected_index].iloc[0]
+    personal_contrib = np.abs(rf_model.feature_importances_ * scaled_active[selected_index - 1])
+    personal_df = pd.DataFrame({"Feature": correct_order, "Contribution": personal_contrib})
+    personal_df = personal_df.sort_values(by="Contribution", ascending=False)
 
-    # 개인별 위험 요인 분석
-    personal_contributions = np.abs(rf_model.feature_importances_ * scaled_active[selected_index - 1])
-    personal_contribution_df = pd.DataFrame({"Feature": correct_order, "Contribution": personal_contributions})
-    personal_contribution_df = personal_contribution_df.sort_values(by="Contribution", ascending=False)
-
-    st.write(f"**선택된 고객의 취소 위험 확률:** {selected_customer['Risk']:.2%}")
-    st.write("**취소 가능성에 크게 기여하는 요소:**")
-    for idx, row in personal_contribution_df.head(4).iterrows():
-        st.write(f"- {row['Feature']}")
+    st.info(f"선택 고객의 **구독 취소 위험 확률**: `{customer['Risk']:.2%}`")
+    st.markdown("**영향을 많이 준 요인:**")
+    for i, row in personal_df.head(4).iterrows():
+        st.write(f"• {row['Feature']}")
